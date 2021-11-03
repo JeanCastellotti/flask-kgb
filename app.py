@@ -30,3 +30,11 @@ stylus = Bundle('css/src/main.styl',
                 filters='stylus,autoprefixer6,cssmin',
                 output='css/style.css')
 assets.register('stylus', stylus)
+
+from main.routes import main
+from auth.routes import auth
+from admin.routes import admin
+
+app.register_blueprint(main)
+app.register_blueprint(auth)
+app.register_blueprint(admin)
