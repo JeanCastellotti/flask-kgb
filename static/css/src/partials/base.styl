@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap')
+
+*
+    margin 0
+    padding 0
+    box-sizing border-box
+
+html
+    font-size 62.5%
+
+body
+    font-size 1.6rem
+    font-family $font-family
+    margin-bottom 1.5rem
+
+a:link, a:visited
+    text-decoration none
+
+h1, h2
+    font-weight 600
+    // margin-bottom 1.6rem
+
+h1
+    color $color-gray-100
+    font-size 3.2rem
+
+h2
+    color $color-gray-80
+    font-size 2rem
+
+h3
+    color $color-gray-80
+    font-weight 600
+    font-size 1.6rem
+
+p
+    color $color-gray-60
+    margin-bottom 1.6rem
+
+input,
+select,
+textarea,
+button 
+    outline none    
+
+ul
+    list-style-type none
+
+.header
+    padding 1.5rem 0
+    margin-bottom 5rem
+    background $color-blue
+
+    .container
+        display flex
+        align-items center
+        justify-content space-between
+        @media (max-width: 28.5em)
+            justify-content center
+
+    &__logo
+        font-size 4rem
+        font-weight 800
+        color $color-gray-80
+        @media (max-width: 28.5em)
+            display none
+
+    &__link:link,
+    &__link:visited
+        display inline-block
+        padding .5rem
+        border-bottom 2px solid transparent
+        color $color-gray-60
+        font-weight 400
+        &:hover
+            color $color-gray-80
+        &:not(:last-child)
+            margin-right 1rem
+
+.admin
+    &__nav
+        background $color-gray-20
+        display flex
+        border-radius 8px  
+        overflow hidden
+        @media (max-width: 48em)
+            flex-direction column
+    
+    &__link:link,
+    &__link:visited
+        flex 1
+        text-align center
+        padding 1.5rem 1rem
+        transition all .15s
+        color $color-gray-50
+        @media (max-width: 48em)
+            padding-top 1rem
+            padding-bottom 1rem
+
+        &:hover
+            color $color-gray-80
+            background $color-gray-40
+
+        &.active
+            color $color-gray-80
+            background $color-gray-40

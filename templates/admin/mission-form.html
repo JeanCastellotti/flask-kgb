@@ -1,0 +1,134 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+    {{ 'Modifier' if edit else 'Créer' }} une mission
+{% endblock %}
+
+{% block admin %}
+    <h2 class="mb-2">{{ 'Modifier' if edit else 'Créer' }} une mission</h2>
+    <form method="POST" novalidate autocomplete="off" class="form">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.title.label }}
+            {{ form.title }}
+            {% if form.title.errors %}
+                {% for error in form.title.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.description.label }}
+            {{ form.description }}
+            {% if form.description.errors %}
+                {% for error in form.description.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.code.label }}
+            {{ form.code }}
+            {% if form.code.errors %}
+                {% for error in form.code.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.country.label }}
+            {{ form.country }}
+            {% if form.country.errors %}
+                {% for error in form.country.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.type.label }}
+            {{ form.type }}
+            {% if form.type.errors %}
+                {% for error in form.type.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.required_speciality.label }}
+            {{ form.required_speciality }}
+            {% if form.required_speciality.errors %}
+                {% for error in form.required_speciality.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% if edit %}
+            <div>
+            {{ form.status.label }}
+            {{ form.status }}
+            {% if form.status.errors %}
+                {% for error in form.status.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% endif %}
+        <div>
+            {{ form.starts_at.label }}
+            {{ form.starts_at }}
+            {% if form.starts_at.errors %}
+                {% for error in form.starts_at.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.ends_at.label }}
+            {{ form.ends_at }}
+            {% if form.ends_at.errors %}
+                {% for error in form.ends_at.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.agents.label }}
+            {{ form.agents }}
+            {% if form.agents.errors %}
+                {% for error in form.agents.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.targets.label }}
+            {{ form.targets }}
+            {% if form.targets.errors %}
+                {% for error in form.targets.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.contacts.label }}
+            {{ form.contacts }}
+            {% if form.contacts.errors %}
+                {% for error in form.contacts.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.hideouts.label }}
+            {{ form.hideouts }}
+            {% if form.hideouts.errors %}
+                {% for error in form.hideouts.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button>
+            {{ 'Modifier' if edit else 'Créer' }} une mission
+        </button>
+    </form>
+{% endblock %}

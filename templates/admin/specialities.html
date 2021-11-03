@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Administration - Les spécialités{% endblock %}
+
+{% block admin %}
+    <div class="flex items-center justify-between mb-2">
+        <h2>Les spécialités</h2>
+        <a href="{{ url_for('admin.create_speciality') }}" class="btn">Ajouter une spécialité</a>
+    </div>
+    {% if specialities %}
+        <div class="overflow-x">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for speciality in specialities %}
+                        <tr>
+                            <td>{{ speciality.name }}</td>
+                            <td>
+                                <a href="{{ url_for('admin.update_speciality', id=speciality.id) }}" class="btn btn--warning">Modifier</a>
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ url_for('admin.delete_speciality', id=speciality.id) }}">
+                                    <button class="btn btn--danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <span class="placeholder">Aucune spécialité</span>
+    {% endif %}
+{% endblock %}

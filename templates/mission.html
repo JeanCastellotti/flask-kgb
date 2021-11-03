@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}{{ mission.title }}{% endblock %}
+
+{% block body %}
+    <div class="flex items-center justify-between mb-2 pb-2 bb">
+        <h1>{{ mission.title }}</h1>
+        {% if mission.status == 'preparation' %}
+            <span class="badge badge--info">Préparation</span>
+        {% elif mission.status == 'progress' %}
+            <span class="badge badge--warning">En cours</span>
+        {% elif mission.status == 'completed' %}
+            <span class="badge badge--success">Terminée</span>
+        {% elif mission.status == 'failed' %}
+            <span class="badge badge--danger">Échec</span>
+        {% endif %}
+    </div>
+    <p>{{ mission.description }}</p>
+    <div class="grid">
+        <div class="card">
+            <h2 class="mb-1">Les agents sur le coup</h2>
+            <ul>
+                {% for agent in mission.agents %}
+                    <li>{{ agent.firstname }} {{ agent.lastname }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="mb-1">Les cibles</h2>
+            <ul>
+                {% for target in mission.targets %}
+                    <li>{{ target.firstname }} {{ target.lastname }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="mb-1">Les contacts</h2>
+            <ul>
+                {% for contact in mission.contacts %}
+                    <li>{{ contact.firstname }} {{ contact.lastname }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="mb-1">Les planques</h2>
+            {% if mission.hideouts %}
+                <ul>
+                    {% for hideout in mission.hideouts %}
+                        <li>{{ hideout.code }} ({{ hideout.address }})</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <span>Aucune planque</span>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Administration - Les types de mission{% endblock %}
+
+{% block admin %}
+    <div class="flex items-center justify-between mb-2">
+        <h2>Les types de mission</h2>
+        <a href="{{ url_for('admin.create_type') }}" class="btn">Ajouter un type</a>
+    </div>
+    {% if types %}
+        <div class="overflow-x">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for type in types %}
+                        <tr>
+                            <td>{{ type.name }}</td>
+                            <td>
+                                <a href="{{ url_for('admin.update_type', id=type.id) }}" class="btn btn--warning">Modifier</a>
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ url_for('admin.delete_type', id=type.id) }}">
+                                    <button class="btn btn--danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <span class="placeholder">Aucun type</span>
+    {% endif %}
+{% endblock %}

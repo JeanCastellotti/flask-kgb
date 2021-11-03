@@ -1,5 +1,37 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <h1>Index</h1>
+    <h1 class="mb-2">Les missions</h1>
+    {% if missions %}
+        <div class="overflow-x">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Pays</th>
+                        <th>Spécialité requise</th>
+                        <th>Début</th>
+                        <th>Fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mission in missions %}
+                        <tr>
+                            <td>
+                                <a href="{{ url_for('main.mission', id=mission.id) }}">
+                                    {{ mission.title }}
+                                </a>
+                            </td>
+                            <td>{{ mission.country.name }}</td>
+                            <td>{{ mission.required_speciality }}</td>
+                            <td>{{ mission.starts_at }}</td>
+                            <td>{{ mission.ends_at }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <span class="placeholder">Aucune mission</span>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,69 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+    {{ 'Modifier' if edit else 'Ajouter' }} un agent
+{% endblock %}
+
+{% block admin %}
+    <h2 class="mb-2">{{ 'Modifier' if edit else 'Ajouter' }} un agent</h2>
+    <form method="POST" novalidate autocomplete="off" class="form">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.firstname.label }}
+            {{ form.firstname }}
+            {% if form.firstname.errors %}
+                {% for error in form.firstname.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.lastname.label }}
+            {{ form.lastname }}
+            {% if form.lastname.errors %}
+                {% for error in form.lastname.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.birthdate.label }}
+            {{ form.birthdate }}
+            {% if form.birthdate.errors %}
+                {% for error in form.birthdate.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.code.label }}
+            {{ form.code }}
+            {% if form.code.errors %}
+                {% for error in form.code.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.nationality.label }}
+            {{ form.nationality }}
+            {% if form.nationality.errors %}
+                {% for error in form.nationality.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {{ form.speciality.label }}
+            {{ form.speciality }}
+            {% if form.speciality.errors %}
+                {% for error in form.speciality.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button>
+            {{ 'Modifier' if edit else 'Ajouter' }} un agent
+        </button>       
+    </form>
+{% endblock %}

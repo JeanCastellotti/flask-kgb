@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Administration - Les contacts{% endblock %}
+
+{% block admin %}
+    <div class="flex items-center justify-between mb-2">
+        <h2>Les contacts</h2>
+        <a href="{{ url_for('admin.create_contact') }}" class="btn">Ajouter un contact</a>
+    </div>
+    {% if contacts %}
+        <div class="overflow-x">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Code</th>
+                        <th>Nationalité</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.firstname }}</td>
+                            <td>{{ contact.lastname }}</td>
+                            <td>{{ contact.code }}</td>
+                            <td>{{ contact.country.nationality }}</td>
+                            <td>
+                                <a href="{{ url_for('admin.update_contact', id=contact.id) }}" class="btn btn--warning">Modifier</a>
+                            </td>
+                            <td>
+                                <form action="{{ url_for('admin.delete_contact', id=contact.id) }}" method="POST">
+                                    <button class="btn btn--danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <span class="placeholder">Aucun contact</span>
+    {% endif %}
+{% endblock %}

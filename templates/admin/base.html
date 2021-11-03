@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    <h1 class="mb-2">Administration</h1>
+    <nav class="admin__nav mb-3">
+        <a href="{{ url_for('admin.missions') }}" class="admin__link" id="missions">Missions</a>
+        <a href="{{ url_for('admin.countries') }}" class="admin__link" id="countries">Pays</a>
+        <a href="{{ url_for('admin.specialities') }}" class="admin__link" id="specialities">Spécialités</a>
+        <a href="{{ url_for('admin.types') }}" class="admin__link" id="types">Types</a>
+        <a href="{{ url_for('admin.agents') }}" class="admin__link" id="agents">Agents</a>
+        <a href="{{ url_for('admin.targets') }}" class="admin__link" id="targets">Cibles</a>
+        <a href="{{ url_for('admin.contacts') }}" class="admin__link" id="contacts">Contacts</a>
+        <a href="{{ url_for('admin.hideouts') }}" class="admin__link" id="hideouts">Planques</a>
+    </nav>
+    {% block admin %}{% endblock %}
+{% endblock %}
+
+{% block js %}
+    <script>
+        const activeLink = window.location.pathname.split('/').at(-1)
+        const elt = document.getElementById(activeLink).classList.add('active')
+        console.log(elt)
+    </script>
+{% endblock %}

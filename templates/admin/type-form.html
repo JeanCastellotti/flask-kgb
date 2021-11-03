@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+    {{ 'Modifier' if edit else 'Ajouter' }} un type
+{% endblock %}
+
+{% block admin %}
+    <h2 class="mb-2">{{ 'Modifier' if edit else 'Ajouter' }} un type</h2>
+    <form method="POST" novalidate autocomplete="off" class="form">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.name.label }}
+            {{ form.name }}
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
+                    <small>{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button>
+            {{ 'Modifier' if edit else 'Ajouter' }} un type
+        </button>
+    </form>
+{% endblock %}

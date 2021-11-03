@@ -1,0 +1,60 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Administration - Toutes les missions{% endblock %}
+
+{% block admin %}
+    <div class="flex items-center justify-between mb-2">
+        <h2>Les missions</h2>
+        <a href="{{ url_for('admin.create_mission') }}" class="btn">Créer une mission</a>
+    </div>
+    {% if missions %}
+        <div class="overflow-x">
+            <div class="overflow-x">
+                <table class="table" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Titre</th>
+                            <th>Pays</th>
+                            <th>Début</th>
+                            <th>Fin</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mission in missions %}
+                            <tr>
+                                <td>
+                                    {% if mission.status == 'preparation' %}
+                                        <span class="badge badge--info">Préparation</span>
+                                    {% elif mission.status == 'progress' %}
+                                        <span class="badge badge--warning">En cours</span>
+                                    {% elif mission.status == 'completed' %}
+                                        <span class="badge badge--success">Terminée</span>
+                                    {% elif mission.status == 'failed' %}
+                                        <span class="badge badge--danger">Échec</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ mission.title }}</td>
+                                <td>{{ mission.country.name }}</td>
+                                <td>{{ mission.starts_at }}</td>
+                                <td>{{ mission.ends_at }}</td>
+                                <td>
+                                    <a href="{{ url_for('admin.update_mission', id=mission.id) }}" class="btn btn--warning">Modifier</a>
+                                </td>
+                                <td>
+                                    <form action="{{ url_for('admin.delete_mission', id=mission.id) }}" method="POST">
+                                        <button class="btn btn--danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        <span class="placeholder">Aucune mission</span>
+    {% endif %}
+{% endblock %}
