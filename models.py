@@ -172,7 +172,7 @@ class Mission(db.Model):
     speciality_id = db.Column(db.Integer,
                               db.ForeignKey('specialities.id'),
                               nullable=False)
-    status = db.Column(db.String(10), nullable=False, default='preparation')
+    status = db.Column(db.String(20), nullable=False, default='preparation')
     starts_at = db.Column(db.Date, nullable=False, default=date.today)
     ends_at = db.Column(db.Date, nullable=False, default=date.today)
     agents = db.relationship('Agent',
