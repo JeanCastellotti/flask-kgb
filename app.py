@@ -3,9 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_assets import Environment, Bundle
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
-from dotenv import load_dotenv
-
-load_dotenv()
+from flask_migrate import Migrate
 
 # Application
 app = Flask(__name__)
@@ -22,6 +20,7 @@ login_manager.login_message_category = 'warning'
 
 # Database ORM
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # Stylus
 assets = Environment(app)
