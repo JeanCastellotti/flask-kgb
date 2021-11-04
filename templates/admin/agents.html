@@ -7,7 +7,7 @@
         <h2>Les agents</h2>
         <a href="{{ url_for('admin.create_agent') }}" class="btn">Ajouter un agent</a>
     </div>
-    {% if has_agents %}
+    {% if agents %}
         <table class="table" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
