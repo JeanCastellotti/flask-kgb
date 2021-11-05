@@ -8,38 +8,40 @@
         <a href="{{ url_for('admin.create_agent') }}" class="btn">Ajouter un agent</a>
     </div>
     {% if agents %}
-        <table class="table" cellspacing="0" cellpadding="0">
-            <thead>
-                <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Code</th>
-                    <th>Nationalité</th>
-                    <th>Spécialité</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for agent in agents %}
+        <div class="overflow-x">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
                     <tr>
-                        <td>{{ agent.firstname }}</td>
-                        <td>{{ agent.lastname }}</td>
-                        <td>{{ agent.code }}</td>
-                        <td>{{ agent.country.nationality }}</td>
-                        <td>{{ agent.speciality }}</td>
-                        <td>
-                            <a href="{{ url_for('admin.update_agent', id=agent.id) }}" class="btn btn--warning">Modifier</a>
-                        </td>
-                        <td>
-                            <form action="{{ url_for('admin.delete_agent', id=agent.id) }}" method="POST">
-                                <button class="btn btn--danger">Supprimer</button>
-                            </form>
-                        </td>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Code</th>
+                        <th>Nationalité</th>
+                        <th>Spécialité</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for agent in agents %}
+                        <tr>
+                            <td>{{ agent.firstname }}</td>
+                            <td>{{ agent.lastname }}</td>
+                            <td>{{ agent.code }}</td>
+                            <td>{{ agent.country.nationality }}</td>
+                            <td>{{ agent.speciality }}</td>
+                            <td>
+                                <a href="{{ url_for('admin.update_agent', id=agent.id) }}" class="btn btn--warning">Modifier</a>
+                            </td>
+                            <td>
+                                <form action="{{ url_for('admin.delete_agent', id=agent.id) }}" method="POST">
+                                    <button class="btn btn--danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         <span class="placeholder">Aucun agent</span>
     {% endif %}
