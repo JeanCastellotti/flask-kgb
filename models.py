@@ -25,9 +25,9 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String, nullable=False)
     lastname = db.Column(db.String, nullable=False)
-    type = db.Column(db.String(20))
+    role = db.Column(db.String(10))
 
-    __mapper_args__ = {'polymorphic_identity': 'user', 'polymorphic_on': type}
+    __mapper_args__ = {'polymorphic_identity': 'user', 'polymorphic_on': role}
 
     def __str__(self):
         return f'{self.firstname} {self.lastname} ({self.country.name})'
