@@ -21,7 +21,7 @@
             <h2>Les contacts</h2>
             <a href="{{ url_for('admin.create_contact') }}" class="btn">Ajouter un contact</a>
         </div>
-        {% if contacts %}
+        {% if contacts.total %}
             <div class="overflow-x">
                 <table class="table" cellspacing="0" cellpadding="0">
                     <thead>

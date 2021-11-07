@@ -21,7 +21,7 @@
             <h2>Les pays</h2>
             <a href="{{ url_for('admin.create_country') }}" class="btn">Ajouter un pays</a>
         </div>
-        {% if countries %}
+        {% if countries.total %}
             <div class="overflow-x">
                 <table class="table" cellspacing="0" cellpadding="0">
                     <thead>

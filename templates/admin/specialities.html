@@ -21,7 +21,7 @@
             <h2>Les spécialités</h2>
             <a href="{{ url_for('admin.create_speciality') }}" class="btn">Ajouter une spécialité</a>
         </div>
-        {% if specialities %}
+        {% if specialities.total %}
             <div class="overflow-x">
                 <table class="table" cellspacing="0" cellpadding="0">
                     <thead>

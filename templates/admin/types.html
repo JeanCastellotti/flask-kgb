@@ -21,7 +21,7 @@
             <h2>Les types de mission</h2>
             <a href="{{ url_for('admin.create_type') }}" class="btn">Ajouter un type</a>
         </div>
-        {% if types %}
+        {% if types.total %}
             <div class="overflow-x">
                 <table class="table" cellspacing="0" cellpadding="0">
                     <thead>
