@@ -10,9 +10,8 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @admin.route('/missions')
 @login_required
 def missions():
-    missions = Mission.query.all()
-    return render_template('admin/missions.html',
-                           missions=missions)
+    missions = Mission.query.order_by(Mission.title.desc()).all()
+    return render_template('admin/missions.html', missions=missions)
 
 
 @admin.route('/missions/create', methods=['GET', 'POST'])
@@ -95,9 +94,8 @@ def delete_mission(id):
 @admin.route('/countries')
 @login_required
 def countries():
-    countries = Country.query.all()
-    return render_template('admin/countries.html',
-                           countries=countries)
+    countries = Country.query.order_by('name').all()
+    return render_template('admin/countries.html', countries=countries)
 
 
 @admin.route('/countries/create', methods=['GET', 'POST'])
@@ -148,7 +146,7 @@ def delete_country(id):
 @admin.route('/specialities')
 @login_required
 def specialities():
-    specialities = Speciality.query.all()
+    specialities = Speciality.query.order_by('name').all()
     return render_template('admin/specialities.html',
                            specialities=specialities)
 
@@ -198,9 +196,8 @@ def delete_speciality(id):
 @admin.route('/types')
 @login_required
 def types():
-    types = Type.query.all()
-    return render_template('admin/types.html',
-                           types=types)
+    types = Type.query.order_by('name').all()
+    return render_template('admin/types.html', types=types)
 
 
 @admin.route('/types/create', methods=['GET', 'POST'])
@@ -249,8 +246,7 @@ def delete_type(id):
 @login_required
 def agents():
     agents = Agent.query.all()
-    return render_template('admin/agents.html',
-                           agents=agents)
+    return render_template('admin/agents.html', agents=agents)
 
 
 @admin.route('/agents/create', methods=['GET', 'POST'])
@@ -313,8 +309,7 @@ def delete_agent(id):
 @login_required
 def targets():
     targets = Target.query.all()
-    return render_template('admin/targets.html',
-                           targets=targets)
+    return render_template('admin/targets.html', targets=targets)
 
 
 @admin.route('/targets/create', methods=['GET', 'POST'])
@@ -374,8 +369,7 @@ def delete_target(id):
 @login_required
 def contacts():
     contacts = Contact.query.all()
-    return render_template('admin/contacts.html',
-                           contacts=contacts)
+    return render_template('admin/contacts.html', contacts=contacts)
 
 
 @admin.route('/contacts/create', methods=['GET', 'POST'])
@@ -435,8 +429,7 @@ def delete_contact(id):
 @login_required
 def hideouts():
     hideouts = Hideout.query.all()
-    return render_template('admin/hideouts.html',
-                           hideouts=hideouts)
+    return render_template('admin/hideouts.html', hideouts=hideouts)
 
 
 @admin.route('/hideouts/create', methods=['GET', 'POST'])
