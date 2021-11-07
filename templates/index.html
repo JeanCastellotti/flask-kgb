@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for mission in missions %}
+                    {% for mission in missions.items %}
                         <tr>
                             <td>
                                 <a href="{{ url_for('main.mission', id=mission.id) }}">
@@ -30,6 +30,23 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="pages">
+            {% for page in missions.iter_pages() %}
+                {% if page %}
+                    {% if missions.page == page %}
+                        <a href="{{ url_for('main.index', page=page) }}" class="pages-item active">
+                            {{ page }}
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('main.index', page=page) }}" class="pages-item">
+                            {{ page }}
+                        </a>
+                    {% endif %}
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
         </div>
     {% else %}
         <span class="placeholder">Aucune mission</span>
