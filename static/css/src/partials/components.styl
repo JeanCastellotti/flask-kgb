@@ -231,3 +231,20 @@
 
 [x-cloak]
     display none
+
+.pages
+    margin-top 1.6rem
+    display flex
+    &-item
+        display inline-block
+        color $color-gray-80
+        padding 1rem 1.6rem
+        border-radius 8px
+        background $color-gray-10
+        border 1px solid $color-gray-40
+        &:not(:last-child)
+            margin-right 1rem
+        &:hover,
+        &.active
+            background $color-gray-40
+        
