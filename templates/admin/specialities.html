@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for speciality in specialities %}
+                        {% for speciality in specialities.items %}
                             <tr>
                                 <td>{{ speciality.name }}</td>
                                 <td>
@@ -46,6 +46,21 @@
                     </tbody>
                 </table>
             </div>
+            {% if specialities.pages > 1 %}
+                <div class="pages">
+                    {% for page in specialities.iter_pages() %}
+                        {% if page %}
+                            {% if specialities.page == page %}
+                                <a href="{{ url_for('admin.specialities', page=page) }}" class="pages-item active">{{ page }}</a>
+                            {% else %}
+                                <a href="{{ url_for('admin.specialities', page=page) }}" class="pages-item">{{ page }}</a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% else %}
             <span class="placeholder">Aucune spécialité</span>
         {% endif %}

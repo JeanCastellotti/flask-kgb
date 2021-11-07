@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for type in types %}
+                        {% for type in types.items %}
                             <tr>
                                 <td>{{ type.name }}</td>
                                 <td>
@@ -46,6 +46,21 @@
                     </tbody>
                 </table>
             </div>
+            {% if types.pages > 1 %}
+                <div class="pages">
+                    {% for page in types.iter_pages() %}
+                        {% if page %}
+                            {% if types.page == page %}
+                                <a href="{{ url_for('admin.types', page=page) }}" class="pages-item active">{{ page }}</a>
+                            {% else %}
+                                <a href="{{ url_for('admin.types', page=page) }}" class="pages-item">{{ page }}</a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% else %}
             <span class="placeholder">Aucun type</span>
         {% endif %}

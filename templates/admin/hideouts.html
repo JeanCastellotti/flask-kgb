@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for hideout in hideouts %}
+                        {% for hideout in hideouts.items %}
                             <tr>
                                 <td>{{ hideout.code }}</td>
                                 <td>{{ hideout.address }}</td>
@@ -50,6 +50,21 @@
                     </tbody>
                 </table>
             </div>
+            {% if hideouts.pages > 1 %}
+                <div class="pages">
+                    {% for page in hideouts.iter_pages() %}
+                        {% if page %}
+                            {% if hideouts.page == page %}
+                                <a href="{{ url_for('admin.hideouts', page=page) }}" class="pages-item active">{{ page }}</a>
+                            {% else %}
+                                <a href="{{ url_for('admin.hideouts', page=page) }}" class="pages-item">{{ page }}</a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% else %}
             <span class="placeholder">Aucune cible</span>
         {% endif %}

@@ -35,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for target in targets %}
+                        {% for target in targets.items %}
                             <tr>
                                 <td>{{ target.firstname }}</td>
                                 <td>{{ target.lastname }}</td>
@@ -52,6 +52,21 @@
                     </tbody>
                 </table>
             </div>
+            {% if targets.pages > 1 %}
+                <div class="pages">
+                    {% for page in targets.iter_pages() %}
+                        {% if page %}
+                            {% if targets.page == page %}
+                                <a href="{{ url_for('admin.targets', page=page) }}" class="pages-item active">{{ page }}</a>
+                            {% else %}
+                                <a href="{{ url_for('admin.targets', page=page) }}" class="pages-item">{{ page }}</a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% else %}
             <span class="placeholder">Aucune cible</span>
         {% endif %}

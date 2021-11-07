@@ -35,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for contact in contacts %}
+                        {% for contact in contacts.items %}
                             <tr>
                                 <td>{{ contact.firstname }}</td>
                                 <td>{{ contact.lastname }}</td>
@@ -52,6 +52,21 @@
                     </tbody>
                 </table>
             </div>
+            {% if contacts.pages > 1 %}
+                <div class="pages">
+                    {% for page in contacts.iter_pages() %}
+                        {% if page %}
+                            {% if contacts.page == page %}
+                                <a href="{{ url_for('admin.contacts', page=page) }}" class="pages-item active">{{ page }}</a>
+                            {% else %}
+                                <a href="{{ url_for('admin.contacts', page=page) }}" class="pages-item">{{ page }}</a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% else %}
             <span class="placeholder">Aucun contact</span>
         {% endif %}

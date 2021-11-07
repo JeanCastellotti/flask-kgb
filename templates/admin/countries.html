@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for country in countries %}
+                        {% for country in countries.items %}
                             <tr>
                                 <td>{{ country.name }}</td>
                                 <td>{{ country.nationality }}</td>
@@ -51,6 +51,21 @@
                 </table>
             </div>
         </div>
+        {% if countries.pages > 1 %}
+            <div class="pages">
+                {% for page in countries.iter_pages() %}
+                    {% if page %}
+                        {% if countries.page == page %}
+                            <a href="{{ url_for('admin.countries', page=page) }}" class="pages-item active">{{ page }}</a>
+                        {% else %}
+                            <a href="{{ url_for('admin.countries', page=page) }}" class="pages-item">{{ page }}</a>
+                        {% endif %}
+                    {% else %}
+                        ...
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
     {% else %}
         <span class="placeholder">Aucun pays</span>
     {% endif %}

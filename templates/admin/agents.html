@@ -36,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for agent in agents %}
+                        {% for agent in agents.items %}
                             <tr>
                                 <td>{{ agent.firstname }}</td>
                                 <td>{{ agent.lastname }}</td>
@@ -54,6 +54,21 @@
                     </tbody>
                 </table>
             </div>
+            {% if agents.pages > 1 %}
+                <div class="pages">
+                    {% for page in agents.iter_pages() %}
+                        {% if page %}
+                            {% if agents.page == page %}
+                                <a href="{{ url_for('admin.agents', page=page) }}" class="pages-item active">{{ page }}</a>
+                            {% else %}
+                                <a href="{{ url_for('admin.agents', page=page) }}" class="pages-item">{{ page }}</a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% else %}
             <span class="placeholder">Aucun agent</span>
         {% endif %}

@@ -66,19 +66,21 @@
                     </table>
                 </div>
             </div>
+            {% if missions.pages > 1 %}
                 <div class="pages">
                     {% for page in missions.iter_pages() %}
-                            {% if page %}
-                                {% if missions.page == page %}
-                                    <a href="{{ url_for('admin.missions', page=page) }}" class="pages-item active">{{ page }}</a>
-                                {% else %}
-                                    <a href="{{ url_for('admin.missions', page=page) }}" class="pages-item">{{ page }}</a>
-                                {% endif %}
+                        {% if page %}
+                            {% if missions.page == page %}
+                                <a href="{{ url_for('admin.missions', page=page) }}" class="pages-item active">{{ page }}</a>
                             {% else %}
-                                ...
+                                <a href="{{ url_for('admin.missions', page=page) }}" class="pages-item">{{ page }}</a>
                             {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
                     {% endfor %}
                 </div>
+            {% endif %}
         {% else %}
             <span class="placeholder">Aucune mission</span>
         {% endif %}
