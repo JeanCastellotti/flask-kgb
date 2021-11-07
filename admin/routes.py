@@ -10,7 +10,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @admin.route('/missions')
 @login_required
 def missions():
-    missions = Mission.query.order_by(Mission.title.desc()).all()
+    missions = Mission.query.order_by(Mission.id.desc()).all()
     return render_template('admin/missions.html', missions=missions)
 
 

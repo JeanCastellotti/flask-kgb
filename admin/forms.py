@@ -30,21 +30,21 @@ class MissionForm(FlaskForm):
     country = QuerySelectField(
         'Pays',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Country.query.all(),
+        query_factory=lambda: Country.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir un pays',
         get_label='name')
     type = QuerySelectField(
         'Type',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Type.query.all(),
+        query_factory=lambda: Type.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir un type',
         get_label='name')
     required_speciality = QuerySelectField(
         'Spécialité requise',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Speciality.query.all(),
+        query_factory=lambda: Speciality.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir une spécialité',
         get_label='name')
@@ -155,14 +155,14 @@ class AgentForm(FlaskForm):
     nationality = QuerySelectField(
         'Nationalité',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Country.query.all(),
+        query_factory=lambda: Country.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir une nationalité',
         get_label='nationality')
     speciality = QuerySelectField(
         'Spécialité',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Speciality.query.all(),
+        query_factory=lambda: Speciality.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir une spécialité',
         get_label='name')
@@ -190,7 +190,7 @@ class TargetForm(FlaskForm):
     nationality = QuerySelectField(
         'Nationalité',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Country.query.all(),
+        query_factory=lambda: Country.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir une nationalité',
         get_label='nationality')
@@ -218,7 +218,7 @@ class ContactForm(FlaskForm):
     nationality = QuerySelectField(
         'Nationalité',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Country.query.all(),
+        query_factory=lambda: Country.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir une nationalité',
         get_label='nationality')
@@ -238,7 +238,7 @@ class HideoutForm(FlaskForm):
     country = QuerySelectField(
         'Pays',
         validators=[DataRequired('Ce champs est obligatoire.')],
-        query_factory=lambda: Country.query.all(),
+        query_factory=lambda: Country.query.order_by('name').all(),
         allow_blank=True,
         blank_text='Choisir un pays',
         get_label='name')
