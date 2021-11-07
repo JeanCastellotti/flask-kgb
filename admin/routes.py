@@ -96,7 +96,8 @@ def delete_mission(id):
 @admin.route('/countries')
 @login_required
 def countries():
-    countries = Country.query.order_by('name').all()
+    page = request.args.get('page', 1, type=int)
+    countries = Country.query.order_by('name').paginate(page=page, per_page=5)
     return render_template('admin/countries.html', countries=countries)
 
 
@@ -148,7 +149,9 @@ def delete_country(id):
 @admin.route('/specialities')
 @login_required
 def specialities():
-    specialities = Speciality.query.order_by('name').all()
+    page = request.args.get('page', 1, type=int)
+    specialities = Speciality.query.order_by('name').paginate(page=page,
+                                                              per_page=5)
     return render_template('admin/specialities.html',
                            specialities=specialities)
 
@@ -198,7 +201,8 @@ def delete_speciality(id):
 @admin.route('/types')
 @login_required
 def types():
-    types = Type.query.order_by('name').all()
+    page = request.args.get('page', 1, type=int)
+    types = Type.query.order_by('name').paginate(page=page, per_page=5)
     return render_template('admin/types.html', types=types)
 
 
@@ -247,7 +251,8 @@ def delete_type(id):
 @admin.route('/agents')
 @login_required
 def agents():
-    agents = Agent.query.all()
+    page = request.args.get('page', 1, type=int)
+    agents = Agent.query.paginate(page=page, per_page=5)
     return render_template('admin/agents.html', agents=agents)
 
 
@@ -310,7 +315,8 @@ def delete_agent(id):
 @admin.route('/targets')
 @login_required
 def targets():
-    targets = Target.query.all()
+    page = request.args.get('page', 1, type=int)
+    targets = Target.query.paginate(page=page, per_page=5)
     return render_template('admin/targets.html', targets=targets)
 
 
@@ -370,7 +376,8 @@ def delete_target(id):
 @admin.route('/contacts')
 @login_required
 def contacts():
-    contacts = Contact.query.all()
+    page = request.args.get('page', 1, type=int)
+    contacts = Contact.query.paginate(page=page, per_page=5)
     return render_template('admin/contacts.html', contacts=contacts)
 
 
@@ -430,7 +437,8 @@ def delete_contact(id):
 @admin.route('/hideouts')
 @login_required
 def hideouts():
-    hideouts = Hideout.query.all()
+    page = request.args.get('page', 1, type=int)
+    hideouts = Hideout.query.paginate(page=page, per_page=5)
     return render_template('admin/hideouts.html', hideouts=hideouts)
 
 
