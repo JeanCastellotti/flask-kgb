@@ -3,38 +3,53 @@
 {% block title %}Administration - Les pays{% endblock %}
 
 {% block admin %}
-    <div class="flex items-center justify-between mb-2">
-        <h2>Les pays</h2>
-        <a href="{{ url_for('admin.create_country') }}" class="btn">Ajouter un pays</a>
-    </div>
-    {% if countries %}
-        <div class="overflow-x">
-            <table class="table" cellspacing="0" cellpadding="0">
-                <thead>
-                    <tr>
-                        <th>Pays</th>
-                        <th>Nationalité</th>
-                        <th>Modifier</th>
-                        <th>Supprimer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for country in countries %}
+    <div x-data="modal">
+        <div class="modal" x-cloak x-show="state.open">
+            <div class="modal-inner" @click.away="toggle">
+                <span class="modal-message">
+                    Confirmez la suppression.
+                </span>
+                <div class="flex items-center justify-end">
+                    <button class="btn" @click="toggle">Annuler</button>
+                    <form :action="`/admin/countries/${state.item}/delete`" method="POST">
+                        <button class="btn btn--danger">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <h2>Les pays</h2>
+            <a href="{{ url_for('admin.create_country') }}" class="btn">Ajouter un pays</a>
+        </div>
+        {% if countries %}
+            <div class="overflow-x">
+                <table class="table" cellspacing="0" cellpadding="0">
+                    <thead>
                         <tr>
-                            <td>{{ country.name }}</td>
-                            <td>{{ country.nationality }}</td>
-                            <td>
-                                <a href="{{ url_for('admin.update_country', id=country.id) }}" class="btn btn--warning">Modifier</a>
-                            </td>
-                            <td>
-                                <form action="{{ url_for('admin.delete_country', id=country.id) }}" method="POST">
-                                    <button class="btn btn--danger">Supprimer</button>
-                                </form>
-                            </td>
+                            <th>Pays</th>
+                            <th>Nationalité</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for country in countries %}
+                            <tr>
+                                <td>{{ country.name }}</td>
+                                <td>{{ country.nationality }}</td>
+                                <td>
+                                    <a href="{{ url_for('admin.update_country', id=country.id) }}" class="btn btn--warning">Modifier</a>
+                                </td>
+                                <td>
+                                    <button class="btn btn--danger" @click="deleteItem($el)" data-item="{{ country.id }}">
+                                        Supprimer
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     {% else %}
         <span class="placeholder">Aucun pays</span>

@@ -19,8 +19,20 @@
 
 {% block js %}
     <script>
-        const activeLink = window.location.pathname.split('/').at(-1)
-        const elt = document.getElementById(activeLink).classList.add('active')
-        console.log(elt)
+        function modal() {
+            return {
+                state: {
+                    open: false,
+                    item: null
+                },
+                toggle() {
+                    this.state.open = !this.state.open
+                },
+                deleteItem(elt) {
+                    this.toggle()
+                    this.state.item = elt.dataset.item
+                }
+            }
+        }
     </script>
 {% endblock %}
