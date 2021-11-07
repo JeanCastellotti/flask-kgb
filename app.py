@@ -33,7 +33,9 @@ assets.register('stylus', stylus)
 from main.routes import main
 from auth.routes import auth
 from admin.routes import admin
+from errors.handlers import errors
 
 app.register_blueprint(main)
 app.register_blueprint(auth)
 app.register_blueprint(admin)
+app.register_blueprint(errors)
