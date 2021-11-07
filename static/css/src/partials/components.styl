@@ -207,3 +207,26 @@
     grid-template-columns repeat(2, 1fr)
     @media (max-width: 768px)
         grid-template-columns 1fr
+
+.modal
+    display flex
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background rgba(0,0,0,.6)
+    &-inner
+        padding 1.5rem
+        border-radius 8px
+        background $color-white
+        margin auto
+    &-message
+        display inline-block
+        margin-bottom 1.6rem
+
+    button:not(:last-child)
+        margin-right 1rem
+
+[x-cloak]
+    display none
