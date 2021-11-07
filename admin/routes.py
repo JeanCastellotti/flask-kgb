@@ -252,7 +252,8 @@ def delete_type(id):
 @login_required
 def agents():
     page = request.args.get('page', 1, type=int)
-    agents = Agent.query.paginate(page=page, per_page=5)
+    agents = Agent.query.order_by(Agent.id.desc()).paginate(page=page,
+                                                            per_page=5)
     return render_template('admin/agents.html', agents=agents)
 
 
@@ -316,7 +317,8 @@ def delete_agent(id):
 @login_required
 def targets():
     page = request.args.get('page', 1, type=int)
-    targets = Target.query.paginate(page=page, per_page=5)
+    targets = Target.query.order_by(Target.id.desc()).paginate(page=page,
+                                                               per_page=5)
     return render_template('admin/targets.html', targets=targets)
 
 
@@ -377,7 +379,8 @@ def delete_target(id):
 @login_required
 def contacts():
     page = request.args.get('page', 1, type=int)
-    contacts = Contact.query.paginate(page=page, per_page=5)
+    contacts = Contact.query.order_by(Contact.id.desc()).paginate(page=page,
+                                                                  per_page=5)
     return render_template('admin/contacts.html', contacts=contacts)
 
 
@@ -438,7 +441,8 @@ def delete_contact(id):
 @login_required
 def hideouts():
     page = request.args.get('page', 1, type=int)
-    hideouts = Hideout.query.paginate(page=page, per_page=5)
+    hideouts = Hideout.query.order_by(Hideout.id.desc()).paginate(page=page,
+                                                                  per_page=5)
     return render_template('admin/hideouts.html', hideouts=hideouts)
 
 
